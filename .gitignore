@@ -1,0 +1,25 @@
+# Maven build
+target/
+*.log
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Spring Boot sensitive files
+**/application.properties
+
+# Python (for AI service)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
