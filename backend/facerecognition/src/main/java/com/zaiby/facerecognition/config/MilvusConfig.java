@@ -1,6 +1,8 @@
 package com.zaiby.facerecognition.config;
 
-import org.springframework.ai.vectorstore.VectorStore;
+import io.milvus.client.MilvusClient;
+import io.milvus.client.MilvusServiceClient;
+import io.milvus.param.ConnectParam;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,7 +10,12 @@ import org.springframework.context.annotation.Configuration;
 public class MilvusConfig {
 
     @Bean
-    public String collectionName() {
-        return "face_embeddings";
+    public MilvusClient milvusClient() {
+        ConnectParam connectParam = ConnectParam.newBuilder()
+                .withHost("localhost")
+                .withPort(19530)
+                .build();
+
+        return new MilvusServiceClient(connectParam);
     }
 }
