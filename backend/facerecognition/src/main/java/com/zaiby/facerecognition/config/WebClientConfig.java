@@ -1,14 +1,14 @@
 package com.zaiby.facerecognition.config;
 
-import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
-public class MilvusConfig {
+public class WebClientConfig {
 
     @Bean
-    public String collectionName() {
-        return "face_embeddings";
+    public WebClient webClient() {
+        return WebClient.builder().build();
     }
 }

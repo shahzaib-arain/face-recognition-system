@@ -3,7 +3,6 @@ package com.zaiby.facerecognition.dto;
 import lombok.Data;
 
 @Data
-public class FaceRegisterRequest {
-    private Long userId;
+public class EmbeddingRequest {
     private String imageBase64;
 }
