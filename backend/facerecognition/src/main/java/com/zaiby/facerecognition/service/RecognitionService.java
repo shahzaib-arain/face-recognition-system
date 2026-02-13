@@ -21,7 +21,10 @@ public class RecognitionService {
     public RecognitionResponse recognizeFace(RecognitionRequest request) {
 
         // 1️⃣ Generate embedding
-        List<Double> embedding = aiService.generateEmbedding(request.getImageBase64()).getEmbedding();
+        EmbeddingResponse embeddingResponse =
+                aiService.generateEmbedding(request.getImageBase64());
+
+        List<Double> embedding = embeddingResponse.getEmbedding();
 
         // 2️⃣ Search nearest in Milvus
         String userIdStr = milvusSearchService.searchNearest(embedding);

@@ -21,11 +21,18 @@ public class AiEmbeddingService {
         EmbeddingRequest request = new EmbeddingRequest();
         request.setImageBase64(base64Image);
 
-        return webClient.post()
+        EmbeddingResponse response = webClient.post()
                 .uri(aiServiceUrl)
                 .bodyValue(request)
                 .retrieve()
                 .bodyToMono(EmbeddingResponse.class)
-                .block();  // blocking for simplicity (OK for now)
+                .block();
+
+        // 🔴 CRITICAL VALIDATION (prevents your crash)
+        if (response == null || response.getEmbedding() == null || response.getEmbedding().isEmpty()) {
+            throw new RuntimeException("AI service failed to generate embedding. Face may not be detected.");
+        }
+
+        return response;
     }
 }
